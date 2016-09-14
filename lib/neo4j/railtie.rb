@@ -9,8 +9,7 @@ require 'neo4j/core/cypher_session/adaptors/embedded'
 
 module Neo4j
   class Railtie < ::Rails::Railtie
-    config.neo4j = ActiveSupport::OrderedOptions.new
-    config.neo4j.session = ActiveSupport::OrderedOptions.new
+    config.neo4j = ActiveSupport::InheritableOptions.new(session: ActiveSupport::OrderedOptions.new)
 
     if defined?(ActiveSupport::Reloader)
       ActiveSupport::Reloader.to_prepare do
